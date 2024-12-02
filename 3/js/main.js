@@ -36,7 +36,7 @@ function getRandomInt(min, max) {
 /**
  * Генерация случайных комментариев для фотографии.
  * Количество комментариев выбирается случайным образом (от 0 до 30).
- * Каждый комментарий состоит из уникального id, сообщения, имени отправителя и аватарки отправителя.
+ * Каждый комментарий состоит из уникального id, сообщений, имени отправителя и аватарки отправителя.
  * @returns {Array} - Массив объектов комментариев.
 */
 function generateComments() {
@@ -44,13 +44,20 @@ function generateComments() {
   const comments = [];
 
   for (let i = 0; i < commentsCount; i++) {
-    const randomMessage = messages[getRandomInt(0, messages.length - 1)];
+    const messagesCount = getRandomInt(1, 3);
+    const randomMessages = [];
+
+    for(let j = 0; j < messagesCount; j++) {
+      const randomMessage = messages[getRandomInt(0, messages.length - 1)];
+      randomMessages.push(randomMessage);
+    }
+
     const randomName = names[getRandomInt(0, names.length - 1)];
     const avatarNumber = getRandomInt(1, 6);
     comments.push({
       id: i + 1,
       avatar: `img/avatar-${avatarNumber}.svg`,
-      message: randomMessage,
+      message: randomMessages.join(" "),
       name: randomName
     });
   }
