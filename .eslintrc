@@ -13,8 +13,9 @@ globals:
   Pristine: readonly
 
 rules:
-  no-unused-vars: 
-    - warn
+  quotes: [1, "double", "avoid-escape"]
+  no-unused-vars: warn
+  no-console: warn
     
 extends:
   "htmlacademy/vanilla"
