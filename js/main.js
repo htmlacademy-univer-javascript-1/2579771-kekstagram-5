@@ -57,7 +57,7 @@ function generateComments() {
     comments.push({
       id: i + 1,
       avatar: `img/avatar-${avatarNumber}.svg`,
-      message: randomMessages.join(" "),
+      message: randomMessages.join("\n"),
       name: randomName
     });
   }
