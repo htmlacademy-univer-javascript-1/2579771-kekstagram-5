@@ -1,30 +1,5 @@
 import { getRandomInt } from "./utils.js";
-
-// Массив с сообщениями для комментариев
-const messages = [
-  "Всё отлично!",
-  "В целом всё неплохо. Но не всё.",
-  "Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.",
-  "Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.",
-  "Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.",
-  "Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!"
-];
-
-// Массив c описаниями фотографии
-const descriptions = [
-  "Фото сделано в самом центре города, когда солнце только начало садиться.",
-  "Прекрасный момент, пойманный на природе, с солнечными лучами, пробивающимися через деревья.",
-  "Эта фотография была сделана во время путешествия по горам. Вечер, туман и немного мистики.",
-  "Отличный кадр с друзьями на празднике! Эмоции переполняют.",
-  "Удивительный вид на город с высоты птичьего полета. Горы, дома и небо в одном кадре.",
-  "Момент из отпуска, когда мы катались на лодке по реке. Спокойствие и умиротворение.",
-];
-
-// Массив с именами пользователей
-const names = [
-  "Артём", "Мария", "Иван", "Светлана", "Никита", "Елена", "Дмитрий", "Ольга", "Максим", "Александра"
-];
-
+import { MESSAGES, DESCRIPTIONS, NAMES} from "./constants.js";
 
 /**
  * Генерация случайных комментариев для фотографии.
@@ -41,11 +16,11 @@ function generateComments() {
     const randomMessages = [];
 
     for(let j = 0; j < messagesCount; j++) {
-      const randomMessage = messages[getRandomInt(0, messages.length - 1)];
+      const randomMessage = MESSAGES[getRandomInt(0, MESSAGES.length - 1)];
       randomMessages.push(randomMessage);
     }
 
-    const randomName = names[getRandomInt(0, names.length - 1)];
+    const randomName = NAMES[getRandomInt(0, NAMES.length - 1)];
     const avatarNumber = getRandomInt(1, 6);
     comments.push({
       id: i + 1,
@@ -68,7 +43,7 @@ function generatePhoto(id) {
   return {
     id: id,
     url: `photos/${id}.jpg`,
-    description: descriptions[getRandomInt(0, descriptions.length - 1)],
+    description: DESCRIPTIONS[getRandomInt(0, DESCRIPTIONS.length - 1)],
     likes: getRandomInt(15, 200),
     comments: generateComments()
   };
