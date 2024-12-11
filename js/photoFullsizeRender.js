@@ -78,7 +78,7 @@ function addCloseListeners(bigPicture, body) {
    * @param {Element} bigPicture - Элемент окна с изображением.
    * @param {Element} body - Элемент body для удаления класса modal-open.
    */
-export function closeBigPicture(bigPicture, body) {
+function closeBigPicture(bigPicture, body) {
   bigPicture.classList.add("hidden");
   body.classList.remove("modal-open");
 }
