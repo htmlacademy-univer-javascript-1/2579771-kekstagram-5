@@ -1,3 +1,5 @@
+import {openBigPicture} from "./photoFullsizeRender.js";
+
 /**
  * Функция, которая рендерит список фотографий в контейнер pictures.
  *
@@ -19,6 +21,11 @@ export function renderPhotos(photoList) {
     imgElement.alt = photo.description;
     likesElement.textContent = photo.likes;
     commentsElement.textContent = photo.comments.length;
+
+    pictureElement.querySelector("a").addEventListener("click", (event) => {
+      event.preventDefault();
+      openBigPicture(photo);
+    });
 
     fragment.appendChild(pictureElement);
   });
