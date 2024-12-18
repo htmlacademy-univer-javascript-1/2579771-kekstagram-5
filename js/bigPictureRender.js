@@ -10,12 +10,12 @@ export function openBigPicture(photo) {
   const body = document.body;
 
   fillPhotoDetails(bigPicture, photo);
-  setupCommentSection(photo);
+  const handleCommentsClick = setupCommentSection(photo);
 
   bigPicture.classList.remove("hidden");
   body.classList.add("modal-open");
 
-  addCloseListeners(bigPicture, body);
+  addCloseListeners(bigPicture, body, handleCommentsClick);
 }
 
 /**
@@ -39,11 +39,10 @@ function fillPhotoDetails(bigPicture, photo) {
  * @param {Object} photo - Объект фотографии.
  */
 function setupCommentSection(photo) {
-  const commentsLoaderElement = document.querySelector(".comments-loader");
   const commentList = document.querySelector(".social__comments");
 
   const allComments = [...photo.comments];
-  const { remainingComments } = setupCommentLoader(allComments, commentList);
+  const handleCommentsClick = setupCommentLoader(allComments, commentList);
 
-  commentsLoaderElement.classList.toggle("hidden", remainingComments.length === 0);
+  return handleCommentsClick;
 }
