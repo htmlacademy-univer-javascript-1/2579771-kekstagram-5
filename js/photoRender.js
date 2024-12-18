@@ -1,4 +1,4 @@
-import {openBigPicture} from "./photoFullsizeRender.js";
+import {openBigPicture} from "./bigPictureRender.js";
 
 /**
  * Функция, которая рендерит список фотографий в контейнер pictures.
