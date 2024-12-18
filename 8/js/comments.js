@@ -38,7 +38,9 @@ export function setupCommentLoader(allComments, commentList) {
   updateCommentCount(displayedComments.length, allComments.length);
 
   const loader = document.querySelector(".comments-loader");
-  loader.addEventListener("click", () => {
+  loader.classList.toggle("hidden", remainingComments.length === 0);
+
+  function handleCommentsClick() {
     const nextComments = remainingComments.slice(0, 5);
     displayedComments = displayedComments.concat(nextComments);
     remainingComments = remainingComments.slice(5);
@@ -47,9 +49,11 @@ export function setupCommentLoader(allComments, commentList) {
     updateCommentCount(displayedComments.length, allComments.length);
 
     loader.classList.toggle("hidden", remainingComments.length === 0);
-  });
+  }
 
-  return { displayedComments, remainingComments };
+  loader.addEventListener("click", handleCommentsClick);
+
+  return handleCommentsClick;
 }
 
 /**
