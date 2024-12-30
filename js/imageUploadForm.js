@@ -5,22 +5,38 @@ const body = document.body;
 const previewImage = document.querySelector(".img-upload__preview img");
 const effectsPreviews = document.querySelectorAll(".effects__preview");
 
+let escapeHandler;
+
 /**
- * Показывает форму редактирования изображения, добавляя соответствующие классы.
+ * Показывает форму редактирования изображения, добавляет соответствующие обработчики событий.
  */
 const showEditForm = () => {
   uploadOverlay.classList.remove("hidden");
   body.classList.add("modal-open");
+
+  uploadCancel.addEventListener("click", closeEditForm);
+
+  escapeHandler = (event) => {
+    if (event.key === "Escape" && !uploadOverlay.classList.contains("hidden")) {
+      closeEditForm();
+    }
+  };
+  document.addEventListener("keydown", escapeHandler);
 };
 
 /**
- * Закрывает форму редактирования изображения и сбрасывает поле загрузки.
+ * Закрывает форму редактирования изображения, удаляет соответствующие обработчики событий и сбрасывает поле загрузки.
  */
-export const closeEditForm = () => {
+export function closeEditForm() {
   uploadOverlay.classList.add("hidden");
   body.classList.remove("modal-open");
   uploadInput.value = "";
-};
+
+  // Удаление обработчиков событий
+  uploadCancel.removeEventListener("click", closeEditForm);
+  document.removeEventListener("keydown", escapeHandler);
+  escapeHandler = null;
+}
 
 /**
  * Обработчик изменения значения input для загрузки изображения.
@@ -42,19 +58,5 @@ uploadInput.addEventListener("change", (event) => {
     };
 
     fileReader.readAsDataURL(file);
-  }
-});
-
-/**
- * Обработчик для кнопки отмены. Закрывает форму редактирования.
- */
-uploadCancel.addEventListener("click", closeEditForm);
-
-/**
- * Обработчик нажатия клавиши Escape для закрытия формы редактирования.
- */
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && !uploadOverlay.classList.contains("hidden")) {
-    closeEditForm();
   }
 });

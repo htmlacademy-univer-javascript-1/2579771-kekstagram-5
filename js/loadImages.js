@@ -13,8 +13,7 @@ export async function fetchImages() {
     if (!response.ok) {
       throw new Error("Ошибка загрузки данных");
     }
-    const images = await response.json();
-    return images;
+    return response.json();
   } catch (error) {
     showError("Не удалось загрузить изображения. Пожалуйста, обновите страницу.");
     console.error(error);

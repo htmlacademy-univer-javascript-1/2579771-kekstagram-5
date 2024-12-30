@@ -24,7 +24,7 @@ const errorTemplate = document.querySelector("#error").content.querySelector(".e
  * @param {HTMLFormElement} uploadForm - Форма загрузки изображения.
  * @param {Object} pristine - Экземпляр Pristine для валидации формы.
  */
-export function handleSubmit(uploadForm, pristine) {
+export function setupFormSubmission(uploadForm, pristine) {
   uploadForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
 
