@@ -22,3 +22,9 @@ export const DESCRIPTIONS = [
 export const NAMES = [
   "Артём", "Мария", "Иван", "Светлана", "Никита", "Елена", "Дмитрий", "Ольга", "Максим", "Александра"
 ];
+
+// Максимальная длина комментария
+export const MAX_COMMENT_LENGTH = 140;
+
+// Максимальное количество хэш-тегов
+export const MAX_HASHTAG_COUNT = 5;

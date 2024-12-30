@@ -1,13 +1,12 @@
+import "../vendor/pristine/pristine.min.js";
+import {MAX_HASHTAG_COUNT, MAX_COMMENT_LENGTH} from "./constants.js";
+
+
 /**
  * Прямой доступ к глобальному объекту Pristine
  * @type {Object}
  */
 const Pristine = window.Pristine;
-
-/** Максимальное количество хэш-тегов */
-const MAX_HASHTAG_COUNT = 5;
-/** Максимальная длина комментария */
-const MAX_COMMENT_LENGTH = 140;
 
 /**
  * Инициализация валидации формы с использованием Pristine.
