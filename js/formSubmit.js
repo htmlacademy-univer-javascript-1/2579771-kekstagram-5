@@ -19,13 +19,24 @@ const successTemplate = document.querySelector("#success").content.querySelector
 const errorTemplate = document.querySelector("#error").content.querySelector(".error");
 
 /**
- * Обработчик отправки формы.
- * Проверяет данные с помощью Pristine, отправляет их на сервер и обрабатывает результат.
- * @param {HTMLFormElement} uploadForm - Форма загрузки изображения.
- * @param {Object} pristine - Экземпляр Pristine для валидации формы.
+ * Ссылка на текущий обработчик отправки формы.
+ * Используется для предотвращения дублирования обработчиков при повторном открытии формы.
+ * @type {Function|null}
+ */
+let formSubmissionHandler = null;
+
+/**
+ * Настройка обработчика отправки формы.
+ * Проверяет данные формы с помощью Pristine, отправляет их на сервер и обрабатывает результат.
+ * @param {HTMLFormElement} uploadForm - HTML-элемент формы загрузки изображения.
+ * @param {Object} pristine - Экземпляр библиотеки Pristine для валидации формы.
  */
 export function setupFormSubmission(uploadForm, pristine) {
-  uploadForm.addEventListener("submit", (evt) => {
+  if (formSubmissionHandler) {
+    uploadForm.removeEventListener("submit", formSubmissionHandler);
+  }
+
+  formSubmissionHandler = (evt) => {
     evt.preventDefault();
 
     if (!pristine.validate()) {
@@ -48,7 +59,9 @@ export function setupFormSubmission(uploadForm, pristine) {
       .finally(() => {
         submitButton.disabled = false;
       });
-  });
+  };
+
+  uploadForm.addEventListener("submit", formSubmissionHandler);
 }
 
 /**
